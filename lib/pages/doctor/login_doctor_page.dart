@@ -3,9 +3,7 @@ import 'package:flutter_app_rdm/pages/doctor/home_doctor_page.dart';
 import 'package:flutter_app_rdm/pages/doctor/register_doctor_page.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
-import 'package:flutter_app_rdm/widget/elevated_button_widget.dart';
-import 'package:flutter_app_rdm/widget/textfield_normal_widget.dart';
-import 'package:flutter_app_rdm/widget/textfield_password_widget.dart';
+import 'package:flutter_app_rdm/widget/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginDoctorPage extends StatefulWidget {
@@ -23,7 +21,6 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Column(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
-import 'package:flutter_app_rdm/widget/elevated_button_widget.dart';
-import 'package:flutter_app_rdm/widget/textfield_normal_widget.dart';
-import 'package:flutter_app_rdm/widget/textfield_password_widget.dart';
+import 'package:flutter_app_rdm/widget/widgets.dart';
 
 class RegisterDoctorPage extends StatefulWidget {
   const RegisterDoctorPage({super.key});
@@ -40,7 +38,6 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Column(

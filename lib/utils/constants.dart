@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const Color scaffoldColor = Colors.white;
 const Color priColor = Color(0xff023E8A);
 const Color grayColor = Color(0xffA6A6A6);
 const Color greenColor = Color(0xffA7D140);
@@ -39,6 +40,25 @@ class TextRegisterFormWidget extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class Text2RegisterFormWidget extends StatelessWidget {
+  String title;
+  Text2RegisterFormWidget({required this.title, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "$title : ",
+      textAlign: TextAlign.start,
+      style: const TextStyle(
+        fontSize: 14.0,
+        color: priColor,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 }

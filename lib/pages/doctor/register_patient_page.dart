@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/models/checkbox_model.dart';
+import 'package:flutter_app_rdm/models/models.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
-import 'package:flutter_app_rdm/widget/checkbox_widget.dart';
-import 'package:flutter_app_rdm/widget/elevated_button_widget.dart';
-import 'package:flutter_app_rdm/widget/textfield_normal_widget.dart';
+import 'package:flutter_app_rdm/widget/widgets.dart';
 
 class RegisterPatientPage extends StatefulWidget {
   const RegisterPatientPage({super.key});
@@ -48,7 +46,6 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

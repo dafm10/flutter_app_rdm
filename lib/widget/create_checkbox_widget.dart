@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
+import 'package:flutter_app_rdm/models/checkbox_model.dart';
+
+import '../utils/constants.dart';
 
 // ignore: must_be_immutable
-class CheckBoxWidget extends StatefulWidget {
-  bool isChecked;
+class CreateCheckBoxWidget extends StatefulWidget {
+  final CheckBoxModel checkBoxModel;
   String title;
-  CheckBoxWidget({
-    super.key,
-    required this.isChecked,
+
+  CreateCheckBoxWidget({
+    required this.checkBoxModel,
     required this.title,
+    super.key,
   });
 
   @override
-  State<CheckBoxWidget> createState() => _CheckBoxWidgetState();
+  State<CreateCheckBoxWidget> createState() => _CreateCheckBoxWidgetState();
 }
 
-class _CheckBoxWidgetState extends State<CheckBoxWidget> {
+class _CreateCheckBoxWidgetState extends State<CreateCheckBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Checkbox(
           activeColor: priColor.withOpacity(0.8),
-          value: widget.isChecked,
+          value: widget.checkBoxModel.selected,
           onChanged: (bool? value) {
             setState(() {
-              widget.isChecked = value!;
+              widget.checkBoxModel.selected = value!;
             });
           },
         ),

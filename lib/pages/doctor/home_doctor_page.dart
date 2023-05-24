@@ -3,7 +3,7 @@ import 'package:flutter_app_rdm/pages/doctor/info_doctor_page.dart';
 import 'package:flutter_app_rdm/pages/doctor/register_patient_page.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
-import 'package:flutter_app_rdm/widget/container_home_widget.dart';
+import 'package:flutter_app_rdm/widget/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeDoctorPage extends StatefulWidget {
@@ -36,7 +36,6 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
           ),
         ],
       ),
-      backgroundColor: Colors.white,
       body: Column(children: [
         Center(
           child: Image.asset(
