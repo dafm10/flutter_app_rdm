@@ -143,33 +143,13 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    activeColor: priColor.withOpacity(0.8),
-                                    value: isCheckedWhatsApp,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        isCheckedWhatsApp = value!;
-                                      });
-                                    },
-                                  ),
-                                  Text("WhatsApp"),
-                                ],
+                              CheckBoxWidget(
+                                isChecked: isCheckedWhatsApp,
+                                title: "WhatsApp",
                               ),
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    activeColor: priColor.withOpacity(0.8),
-                                    value: isCheckedPhone,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        isCheckedPhone = value!;
-                                      });
-                                    },
-                                  ),
-                                  Text("Teléfono"),
-                                ],
+                              CheckBoxWidget(
+                                isChecked: isCheckedPhone,
+                                title: "Teléfono",
                               ),
                             ],
                           ),
