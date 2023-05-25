@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/data/data.dart';
 import 'package:flutter_app_rdm/models/checkbox_model.dart';
@@ -19,7 +20,7 @@ class RegisterPatientsPage extends StatefulWidget {
 }
 
 class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
-  // CheckBoxModel checkboxContact = checkboxContacts;
+  List<CheckBoxModel> checkboxContact = checkboxContacts;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +48,7 @@ class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
               ),
             ),
             floating: true,
+            pinned: true,
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -82,89 +84,158 @@ class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
                     horizontal: defaultPadding * 2,
                   ),
                   child: Form(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextRegisterFormWidget(
-                        title: "Nombres completos del paciente: ",
-                      ),
-                      TextFieldNormalWidget(
-                        hintText: "Nombres",
-                        icon: "user",
-                        maxLines: 1,
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextFieldNormalWidget(
-                        hintText: "Apellidos",
-                        icon: "user",
-                        maxLines: 1,
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextRegisterFormWidget(
-                        title: "Número de celular: ",
-                      ),
-                      TextFieldNormalWidget(
-                        hintText: "Teléfono",
-                        icon: "phone",
-                        maxLines: 1,
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextRegisterFormWidget(
-                        title: "Forma de contacto: ",
-                      ),
-                      // SliverList(
-                      //   delegate: SliverChildBuilderDelegate(
-                      //     (context, index) {
-                      //       final CheckBoxModel checkboxContact =
-                      //           checkboxContacts[index];
-                      //       return CheckBoxWidget(
-                      //           isChecked: checkboxContact.selected,
-                      //           title: checkboxContact.title);
-                      //     },
-                      //     childCount: checkboxContacts.length,
-                      //   ),
-                      // ),
-                      const SizedBox(height: 20.0),
-                      Text2RegisterFormWidget(
-                        title: "Observaciones",
-                      ),
-                      const SizedBox(height: 10.0),
-                      TextFormField(
-                        maxLines: 5,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              style: BorderStyle.solid,
-                              color: grayColor,
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextRegisterFormWidget(
+                          title: "Nombres completos del paciente: ",
+                        ),
+                        TextFieldNormalWidget(
+                          hintText: "Nombres",
+                          icon: "user",
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFieldNormalWidget(
+                          hintText: "Apellidos",
+                          icon: "user",
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextRegisterFormWidget(
+                          title: "Número de celular: ",
+                        ),
+                        TextFieldNormalWidget(
+                          hintText: "Teléfono",
+                          icon: "phone",
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextRegisterFormWidget(
+                          title: "Forma de contacto: ",
+                        ),
+                        // SliverList(
+                        //   delegate: SliverChildBuilderDelegate(
+                        //     (context, index) {
+                        //       final CheckBoxModel checkboxContact =
+                        //           checkboxContacts[index];
+                        //       return CheckBoxWidget(
+                        //           checkBoxModel: checkboxContact);
+                        //     },
+                        //     childCount: checkboxContacts.length,
+                        //   ),
+                        // ),
+                        // ListView.builder(
+                        //   padding: EdgeInsets.zero,
+                        //   itemCount: checkboxContact.length,
+                        //   shrinkWrap: true,
+                        //   physics: const BouncingScrollPhysics(),
+                        //   itemBuilder: (BuildContext context, int index) {
+                        //     return Row(
+                        //       children: [
+                        //         CheckBoxWidget(
+                        //           checkBoxModel: checkboxContact[index],
+                        //         ),
+                        //       ],
+                        //     );
+                        //   },
+                        // ),
+                        // CheckBoxWidget(checkBoxModel: checkboxContact[0]),
+                        // CheckBoxWidget(checkBoxModel: checkboxContact[1]),
+                        SizedBox(
+                          height: 30,
+                          child: CustomScrollView(
+                            slivers: [
+                              SliverGrid(
+                                gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 300.0,
+                                  mainAxisSpacing: 10.0,
+                                  crossAxisSpacing: 10.0,
+                                  childAspectRatio: 5.0,
+                                ),
+                                delegate: SliverChildBuilderDelegate(
+                                  (BuildContext context, int index) {
+                                    final CheckBoxModel check =
+                                        checkboxContacts[index];
+                                    return CheckBoxWidget(
+                                      checkBoxModel: check,
+                                    );
+                                  },
+                                  childCount: checkboxContacts.length,
+                                ),
+                              ),
+                            ],
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              style: BorderStyle.solid,
-                              color: grayColor,
+                        ),
+                        // SizedBox(
+                        //   height: 100,
+                        //   child: CustomScrollView(
+                        //     slivers: [
+                        //       SliverList(
+                        //         delegate: SliverChildBuilderDelegate(
+                        //           (context, index) {
+                        //             final CheckBoxModel check =
+                        //                 checkboxContacts[index];
+                        //             return Row(
+                        //               children: [
+                        //                 CheckBoxWidget(
+                        //                   checkBoxModel: check,
+                        //                 ),
+                        //                 CheckBoxWidget(
+                        //                   checkBoxModel: check,
+                        //                 ),
+                        //               ],
+                        //             );
+                        //           },
+                        //           childCount: checkboxContacts.length,
+                        //         ),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        const SizedBox(height: 20.0),
+                        Text2RegisterFormWidget(
+                          title: "Observaciones",
+                        ),
+                        const SizedBox(height: 10.0),
+                        TextFormField(
+                          maxLines: 5,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: grayColor,
+                              ),
                             ),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              style: BorderStyle.solid,
-                              color: grayColor,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: grayColor,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: grayColor,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 10.0),
-                      const Divider(
-                        height: 10.0,
-                        thickness: 0.5,
-                        color: grayColor,
-                      ),
-                      const SizedBox(height: 10.0),
-                      Text2RegisterFormWidget(
-                        title: "RADIOGRAFÍAS EXTRABUCALES DIGITALES",
-                      ),
-                      const SizedBox(height: 20.0),
-                    ],
-                  )),
+                        const SizedBox(height: 10.0),
+                        const Divider(
+                          height: 10.0,
+                          thickness: 0.5,
+                          color: grayColor,
+                        ),
+                        const SizedBox(height: 10.0),
+                        Text2RegisterFormWidget(
+                          title: "RADIOGRAFÍAS EXTRABUCALES DIGITALES",
+                        ),
+                        const SizedBox(height: 20.0),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

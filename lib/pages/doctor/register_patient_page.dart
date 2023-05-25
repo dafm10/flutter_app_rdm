@@ -137,19 +137,19 @@ class _RegisterPatientPageState extends State<RegisterPatientPage> {
                           TextRegisterFormWidget(
                             title: "Forma de contacto ",
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              CheckBoxWidget(
-                                isChecked: isCheckedWhatsApp,
-                                title: "WhatsApp",
-                              ),
-                              CheckBoxWidget(
-                                isChecked: isCheckedPhone,
-                                title: "Teléfono",
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          //   children: [
+                          //     CheckBoxWidget(
+                          //       isChecked: isCheckedWhatsApp,
+                          //       title: "WhatsApp",
+                          //     ),
+                          //     CheckBoxWidget(
+                          //       isChecked: isCheckedPhone,
+                          //       title: "Teléfono",
+                          //     ),
+                          //   ],
+                          // ),
                           const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(

@@ -6,11 +6,11 @@ import '../utils/constants.dart';
 // ignore: must_be_immutable
 class CreateCheckBoxWidget extends StatefulWidget {
   final CheckBoxModel checkBoxModel;
-  String title;
+  // String title;
 
   CreateCheckBoxWidget({
     required this.checkBoxModel,
-    required this.title,
+    // required this.title,
     super.key,
   });
 
@@ -33,7 +33,7 @@ class _CreateCheckBoxWidgetState extends State<CreateCheckBoxWidget> {
           },
         ),
         Text(
-          widget.title,
+          widget.checkBoxModel.title,
           style: const TextStyle(
             color: Colors.black54,
           ),
