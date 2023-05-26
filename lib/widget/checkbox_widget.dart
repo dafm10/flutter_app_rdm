@@ -32,10 +32,14 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
             });
           },
         ),
-        Text(
-          widget.checkBoxModel.title,
-          style: const TextStyle(
-            color: Colors.black54,
+        Expanded(
+          child: Text(
+            widget.checkBoxModel.title,
+            style: const TextStyle(
+              color: Colors.black87,
+            ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
           ),
         ),
       ],

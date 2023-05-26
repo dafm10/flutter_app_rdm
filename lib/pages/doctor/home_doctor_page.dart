@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/pages/doctor/info_doctor_page.dart';
-import 'package:flutter_app_rdm/pages/doctor/register_patient_page.dart';
+import 'package:flutter_app_rdm/pages/doctor/pages.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
@@ -66,7 +65,7 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => RegisterPatientPage(),
+                builder: (context) => const RegisterPatientsPage(),
               ),
             );
           },

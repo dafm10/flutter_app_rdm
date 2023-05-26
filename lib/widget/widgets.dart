@@ -4,3 +4,7 @@ export 'elevated_button_widget.dart';
 export 'textfield_normal_widget.dart';
 export 'textfield_password_widget.dart';
 export 'create_checkbox_widget.dart';
+export 'text_2_register_form_widget.dart';
+export 'text_register_form_widget.dart';
+export 'expansion_tile_widget.dart';
+export 'text_subtitle_widget.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/pages/doctor/login_doctor_page.dart';
-import 'package:flutter_app_rdm/pages/doctor/test_check.dart';
+import 'package:flutter_app_rdm/pages/doctor/pages.dart';
 
 import 'utils/constants.dart';
 
@@ -20,8 +19,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: scaffoldColor,
       ),
-      // home: const LoginDoctorPage(),
-      home: const RegisterPatientsPage(),
+      home: const LoginDoctorPage(),
+      // home: const RegisterPatientsPage(),
     );
   }
 }

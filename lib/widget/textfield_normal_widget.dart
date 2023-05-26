@@ -11,7 +11,8 @@ class TextFieldNormalWidget extends StatelessWidget {
   final int? maxLines;
   final bool? isNumeric;
 
-  TextFieldNormalWidget({
+  const TextFieldNormalWidget({
+    super.key,
     required this.hintText,
     required this.icon,
     this.controller,
