@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/doctor/pages.dart';
-
 import 'utils/constants.dart';
 
 void main() {
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: scaffoldColor,
       ),
       home: const LoginDoctorPage(),
-      // home: const RegisterPatientsPage(),
     );
   }
 }
