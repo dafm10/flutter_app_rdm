@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/pages/doctor/home_doctor_page.dart';
-import 'package:flutter_app_rdm/pages/doctor/register_doctor_page.dart';
+import 'package:flutter_app_rdm/pages/doctor/pages.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
@@ -94,14 +93,24 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                           const SizedBox(
                             height: 28.0,
                           ),
-                          const Align(
+                          Align(
                             alignment: Alignment.centerRight,
-                            child: Text(
-                              "Olvidé mi contraseña",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: priColor,
-                                fontWeight: FontWeight.w400,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RestartPasswordPage(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                "Olvidé mi contraseña",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: priColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ),
