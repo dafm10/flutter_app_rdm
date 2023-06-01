@@ -134,7 +134,9 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                           SizedBox(height: responsive.hp(9)),
                           ElevatedButtonWidget(
                             title: "Registrar",
-                            onFunction: () {},
+                            onFunction: () {
+                              if (_formKey.currentState!.validate()) {}
+                            },
                           ),
                         ],
                       ),

@@ -121,12 +121,14 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                             title: "Iniciar Sesión",
                             onFunction: () {
                               // login();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeDoctorPage(),
-                                ),
-                              );
+                              if (_formKey.currentState!.validate()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeDoctorPage(),
+                                  ),
+                                );
+                              }
                             },
                           ),
                           SizedBox(height: responsive.hp(3)),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_rdm/data/data.dart';
 import 'package:flutter_app_rdm/models/checkbox_model.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -21,6 +21,8 @@ class RegisterPatientsPage extends StatefulWidget {
 }
 
 class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,6 +83,7 @@ class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
                     horizontal: defaultPadding * 2,
                   ),
                   child: Form(
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -109,6 +112,7 @@ class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
                           icon: "phone",
                           maxLines: 1,
                           isNumeric: true,
+                          typeInput: TypeInputTextField.phone,
                         ),
                         const SizedBox(height: 20.0),
                         TextRegisterFormWidget(
@@ -564,7 +568,9 @@ class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
                         ),
                         const SizedBox(height: 20.0),
                         ElevatedButtonWidget(
-                          onFunction: () {},
+                          onFunction: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
                           title: "Enviar Registro",
                         ),
                         const SizedBox(height: 16.0),

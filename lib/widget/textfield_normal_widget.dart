@@ -99,6 +99,12 @@ class TextFieldNormalWidget extends StatelessWidget {
           if (value!.isEmpty) {
             return "El campo no puede estar vacío";
           }
+          if (typeInput == TypeInputTextField.dni && value.length < 8) {
+            return "El campo debe de tener 8 caracteres";
+          }
+          if (typeInput == TypeInputTextField.phone && value.length < 9) {
+            return "El campo debe de tener 9 caracteres";
+          }
           return null;
         },
       ),
