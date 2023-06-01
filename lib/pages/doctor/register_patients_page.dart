@@ -87,27 +87,28 @@ class _RegisterPatientsPageState extends State<RegisterPatientsPage> {
                         TextRegisterFormWidget(
                           title: "Nombres completos del paciente: ",
                         ),
-                        const TextFieldNormalWidget(
+                        TextFieldNormalWidget(
                           hintText: "Nombres",
                           icon: "user",
                           maxLines: 1,
+                          isNumeric: false,
                         ),
                         const SizedBox(height: 20.0),
-                        const TextFieldNormalWidget(
+                        TextFieldNormalWidget(
                           hintText: "Apellidos",
                           icon: "user",
                           maxLines: 1,
+                          isNumeric: false,
                         ),
                         const SizedBox(height: 20.0),
                         TextRegisterFormWidget(
                           title: "Número de celular: ",
                         ),
-                        const TextFieldNormalWidget(
+                        TextFieldNormalWidget(
                           hintText: "Teléfono",
                           icon: "phone",
                           maxLines: 1,
                           isNumeric: true,
-                          textInputType: TextInputType.number,
                         ),
                         const SizedBox(height: 20.0),
                         TextRegisterFormWidget(

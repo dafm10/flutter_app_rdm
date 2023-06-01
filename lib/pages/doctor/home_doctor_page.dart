@@ -3,7 +3,7 @@ import 'package:flutter_app_rdm/pages/doctor/pages.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeDoctorPage extends StatefulWidget {
   const HomeDoctorPage({super.key});
@@ -15,6 +15,7 @@ class HomeDoctorPage extends StatefulWidget {
 class _HomeDoctorPageState extends State<HomeDoctorPage> {
   @override
   Widget build(BuildContext context) {
+    ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -42,7 +43,7 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
             width: ResponsiveUI(context).wp(45),
           ),
         ),
-        const SizedBox(height: 60.0),
+        SizedBox(height: responsive.hp(7)),
         GestureDetector(
           onTap: () {
             Navigator.push(
@@ -59,7 +60,7 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
             color: greenColor,
           ),
         ),
-        const SizedBox(height: 60.0),
+        SizedBox(height: responsive.hp(7)),
         GestureDetector(
           onTap: () {
             Navigator.push(
@@ -76,12 +77,10 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
             color: purpleColor,
           ),
         ),
-        const SizedBox(height: 50.0),
-        SizedBox(
-          height: ResponsiveUI(context).hp(20),
-          child: SvgPicture.asset(
-            "assets/images/doctors.svg",
-          ),
+        Lottie.network(
+          "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json",
+          animate: false,
+          height: 210.0,
         ),
       ]),
     );

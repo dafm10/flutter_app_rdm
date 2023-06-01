@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/doctor/pages.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
-import 'package:flutter_app_rdm/utils/responsive.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginDoctorPage extends StatefulWidget {
   const LoginDoctorPage({super.key});
@@ -17,8 +16,13 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  login() {
+    if (_formKey.currentState!.validate()) {}
+  }
+
   @override
   Widget build(BuildContext context) {
+    ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -45,7 +49,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40.0),
+              SizedBox(height: responsive.hp(4)),
               Column(
                 children: [
                   const Text(
@@ -56,7 +60,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 8.0),
+                  SizedBox(height: responsive.hp(1)),
                   Container(
                     width: 30.0,
                     height: 1.0,
@@ -64,7 +68,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32.0),
+              SizedBox(height: responsive.hp(4)),
               Expanded(
                 flex: 4,
                 child: Container(
@@ -82,17 +86,15 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                             maxLines: 1,
                             hintText: "Correo electrónico",
                             icon: "mail",
-                            textInputType: TextInputType.text,
                             controller: _emailController,
+                            isNumeric: false,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           TextFieldPasswordWidget(
                             validator: true,
                             controller: _passwordController,
                           ),
-                          const SizedBox(
-                            height: 28.0,
-                          ),
+                          SizedBox(height: responsive.hp(3)),
                           Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
@@ -114,10 +116,11 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 51.0),
+                          SizedBox(height: responsive.hp(5.5)),
                           ElevatedButtonWidget(
                             title: "Iniciar Sesión",
                             onFunction: () {
+                              // login();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -126,7 +129,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                               );
                             },
                           ),
-                          const SizedBox(height: 25.0),
+                          SizedBox(height: responsive.hp(3)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -159,14 +162,12 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 30.0,
-                          ),
                           Align(
                             alignment: Alignment.bottomCenter,
-                            child: SvgPicture.asset(
-                              "assets/images/login-draw.svg",
-                              height: 200,
+                            child: Lottie.network(
+                              "https://assets1.lottiefiles.com/packages/lf20_KvK0ZJBQzu.json",
+                              animate: false,
+                              height: 280.0,
                             ),
                           ),
                         ],

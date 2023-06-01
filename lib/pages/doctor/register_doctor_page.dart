@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
-import 'package:flutter_app_rdm/utils/responsive.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
 
 class RegisterDoctorPage extends StatefulWidget {
@@ -20,6 +19,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
 
   @override
   Widget build(BuildContext context) {
+    ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(30.0),
@@ -53,7 +53,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                         width: ResponsiveUI(context).wp(48),
                       ),
                     ),
-                    const SizedBox(height: 40.0),
+                    SizedBox(height: responsive.hp(4)),
                     const Text(
                       "Registro",
                       style: TextStyle(
@@ -62,7 +62,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    SizedBox(height: responsive.hp(1)),
                     Container(
                       width: 30.0,
                       height: 1.0,
@@ -71,7 +71,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 32.0),
+              SizedBox(height: responsive.hp(3)),
               Expanded(
                 flex: 4,
                 child: Container(
@@ -89,39 +89,41 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             maxLines: 1,
                             hintText: "Nombres y Apellidos",
                             icon: "user",
-                            textInputType: TextInputType.text,
                             controller: _nameController,
+                            isNumeric: false,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(2.5)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "COP Nº",
                             icon: "hash",
-                            textInputType: TextInputType.number,
                             controller: _copController,
+                            isNumeric: true,
+                            typeInput: TypeInputTextField.dni,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(2.5)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Teléfono",
                             icon: "phone",
-                            textInputType: TextInputType.number,
                             controller: _phoneController,
+                            isNumeric: true,
+                            typeInput: TypeInputTextField.phone,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(2.5)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Correo electrónico",
                             icon: "mail",
-                            textInputType: TextInputType.text,
                             controller: _emailController,
+                            isNumeric: false,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(2.5)),
                           TextFieldPasswordWidget(
                             validator: true,
                             controller: _passwordController,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           const Text(
                             "Todos los datos son obligatorios para su aprobación",
                             style: TextStyle(
@@ -129,7 +131,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 80.0),
+                          SizedBox(height: responsive.hp(9)),
                           ElevatedButtonWidget(
                             title: "Registrar",
                             onFunction: () {},

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: must_be_immutable
@@ -85,7 +85,7 @@ class _TextFieldPasswordWidgetState extends State<TextFieldPasswordWidget> {
               style: BorderStyle.solid,
             ),
           ),
-          errorBorder: const OutlineInputBorder(
+          errorBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               width: 1.0,
               color: grayColor,

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TextFieldNormalWidget extends StatelessWidget {
-  final String hintText;
-  final String icon;
-  final TextEditingController? controller;
-  final TextInputType? textInputType;
-  final int? maxLines;
-  final bool? isNumeric;
+  String hintText;
+  String icon;
+  TextEditingController? controller;
+  TextInputType? textInputType;
+  TypeInputTextField? typeInput;
+  int? maxLines;
+  bool isNumeric;
 
-  const TextFieldNormalWidget({
+  TextFieldNormalWidget({
     super.key,
     required this.hintText,
     required this.icon,
+    required this.isNumeric,
     this.controller,
     this.textInputType,
     this.maxLines,
-    this.isNumeric,
+    this.typeInput,
   });
 
   @override
@@ -34,8 +36,13 @@ class TextFieldNormalWidget extends StatelessWidget {
       child: TextFormField(
         maxLines: maxLines,
         controller: controller,
-        keyboardType: textInputType,
-        inputFormatters: isNumeric != null
+        maxLength: isNumeric
+            ? typeInput == TypeInputTextField.dni
+                ? 8
+                : 9
+            : null,
+        keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
+        inputFormatters: isNumeric
             ? [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
               ]
@@ -49,6 +56,7 @@ class TextFieldNormalWidget extends StatelessWidget {
           ),
           filled: true,
           fillColor: Colors.white,
+          counterText: "",
           prefixIcon: SvgPicture.asset(
             "assets/icons/$icon.svg",
             height: 20.0,
@@ -79,7 +87,7 @@ class TextFieldNormalWidget extends StatelessWidget {
               style: BorderStyle.solid,
             ),
           ),
-          errorBorder: const OutlineInputBorder(
+          errorBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               width: 1.0,
               color: grayColor,

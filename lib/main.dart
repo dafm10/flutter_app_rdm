@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/doctor/pages.dart';
-import 'utils/constants.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 
 void main() {
   runApp(const MyApp());

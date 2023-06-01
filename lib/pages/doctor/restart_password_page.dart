@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/utils/constants.dart';
+import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
 
 class RestartPasswordPage extends StatelessWidget {
@@ -10,6 +10,7 @@ class RestartPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -20,6 +21,11 @@ class RestartPasswordPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -35,7 +41,7 @@ class RestartPasswordPage extends StatelessWidget {
                 color: priColor.withOpacity(0.8),
               ),
             ),
-            const SizedBox(height: 12.0),
+            SizedBox(height: responsive.hp(1.5)),
             const Text(
               "Ingresa el correo electrónico \nasociado con tu cuenta",
               style: TextStyle(
@@ -44,7 +50,7 @@ class RestartPasswordPage extends StatelessWidget {
                 color: Colors.black54,
               ),
             ),
-            const SizedBox(height: 12.0),
+            SizedBox(height: responsive.hp(2)),
             Form(
               key: _formKey,
               child: Column(
@@ -54,8 +60,9 @@ class RestartPasswordPage extends StatelessWidget {
                     icon: "mail",
                     maxLines: 1,
                     controller: _emailController,
+                    isNumeric: false,
                   ),
-                  const SizedBox(height: 32.0),
+                  SizedBox(height: responsive.hp(4)),
                   ElevatedButtonWidget(
                     title: "Recuperar contraseña",
                     onFunction: () {},

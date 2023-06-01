@@ -13,32 +13,35 @@ class ElevatedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12.0),
-      child: Container(
-        height: 54.0,
-        width: double.infinity,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(20), boxShadow: [
+    return Container(
+      height: 54.0,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
           BoxShadow(
             color: priColor.withOpacity(0.5),
-            blurRadius: 7.0,
-            offset: const Offset(5, 7),
+            blurRadius: 6.0,
+            offset: const Offset(0, 2),
           ),
-        ]),
-        child: ElevatedButton(
-          onPressed: () {
-            onFunction();
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: priColor.withOpacity(0.76),
+        ],
+      ),
+      child: ElevatedButton(
+        onPressed: () {
+          onFunction();
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: priColor.withOpacity(0.76),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide.none,
           ),
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
-            ),
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

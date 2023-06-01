@@ -20,6 +20,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
 
   @override
   Widget build(BuildContext context) {
+    ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(30.0),
@@ -53,16 +54,16 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                         width: ResponsiveUI(context).wp(48),
                       ),
                     ),
-                    const SizedBox(height: 40.0),
+                    SizedBox(height: responsive.hp(4)),
                     const Text(
-                      "Registro",
+                      "Mi Perfil",
                       style: TextStyle(
                         fontSize: 18.0,
                         color: priColor,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    SizedBox(height: responsive.hp(1)),
                     Container(
                       width: 30.0,
                       height: 1.0,
@@ -71,7 +72,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 32.0),
+              SizedBox(height: responsive.hp(3)),
               Expanded(
                 flex: 4,
                 child: Container(
@@ -91,37 +92,41 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                             icon: "user",
                             textInputType: TextInputType.text,
                             controller: _nameController,
+                            isNumeric: false,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "COP Nº",
                             icon: "hash",
                             textInputType: TextInputType.number,
                             controller: _copController,
+                            isNumeric: true,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Teléfono",
                             icon: "phone",
                             textInputType: TextInputType.number,
                             controller: _phoneController,
+                            isNumeric: true,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Correo electrónico",
                             icon: "mail",
                             textInputType: TextInputType.text,
                             controller: _emailController,
+                            isNumeric: false,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           TextFieldPasswordWidget(
                             validator: true,
                             controller: _passwordController,
                           ),
-                          const SizedBox(height: 24.0),
+                          SizedBox(height: responsive.hp(3)),
                           const Text(
                             "Por seguridad no puedes editar tu Nro. de COP",
                             style: TextStyle(
@@ -129,7 +134,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 80.0),
+                          SizedBox(height: responsive.hp(9)),
                           ElevatedButtonWidget(
                             title: "Modificar",
                             onFunction: () {},
