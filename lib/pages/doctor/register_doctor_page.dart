@@ -92,7 +92,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             controller: _nameController,
                             isNumeric: false,
                           ),
-                          SizedBox(height: responsive.hp(2.5)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "COP Nº",
@@ -101,7 +101,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             isNumeric: true,
                             typeInput: TypeInputTextField.dni,
                           ),
-                          SizedBox(height: responsive.hp(2.5)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Teléfono",
@@ -110,7 +110,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             isNumeric: true,
                             typeInput: TypeInputTextField.phone,
                           ),
-                          SizedBox(height: responsive.hp(2.5)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Correo electrónico",
@@ -118,12 +118,12 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             controller: _emailController,
                             isNumeric: false,
                           ),
-                          SizedBox(height: responsive.hp(2.5)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldPasswordWidget(
                             validator: true,
                             controller: _passwordController,
                           ),
-                          SizedBox(height: responsive.hp(3)),
+                          SizedBox(height: responsive.hp(2)),
                           const Text(
                             "Todos los datos son obligatorios para su aprobación",
                             style: TextStyle(
@@ -131,7 +131,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: responsive.hp(9)),
+                          SizedBox(height: responsive.hp(3)),
                           ElevatedButtonWidget(
                             title: "Registrar",
                             onFunction: () {

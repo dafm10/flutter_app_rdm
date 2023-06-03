@@ -94,7 +94,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                             controller: _nameController,
                             isNumeric: false,
                           ),
-                          SizedBox(height: responsive.hp(3)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "COP Nº",
@@ -103,7 +103,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                             controller: _copController,
                             isNumeric: true,
                           ),
-                          SizedBox(height: responsive.hp(3)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Teléfono",
@@ -112,7 +112,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                             controller: _phoneController,
                             isNumeric: true,
                           ),
-                          SizedBox(height: responsive.hp(3)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(
                             maxLines: 1,
                             hintText: "Correo electrónico",
@@ -121,7 +121,7 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                             controller: _emailController,
                             isNumeric: false,
                           ),
-                          SizedBox(height: responsive.hp(3)),
+                          SizedBox(height: responsive.hp(2)),
                           TextFieldPasswordWidget(
                             validator: true,
                             controller: _passwordController,
@@ -134,10 +134,12 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: responsive.hp(9)),
+                          SizedBox(height: responsive.hp(3)),
                           ElevatedButtonWidget(
                             title: "Modificar",
-                            onFunction: () {},
+                            onFunction: () {
+                              if (_formKey.currentState!.validate()) {}
+                            },
                           ),
                         ],
                       ),
