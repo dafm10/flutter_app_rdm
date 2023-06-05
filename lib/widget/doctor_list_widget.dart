@@ -54,14 +54,18 @@ class DoctorListWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                onDelete();
+              },
               icon: SvgPicture.asset(
                 "assets/icons/trash.svg",
                 height: 20.0,
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                onEdit();
+              },
               icon: SvgPicture.asset(
                 "assets/icons/edit.svg",
                 height: 20.0,

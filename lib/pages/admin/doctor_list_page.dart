@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/models/models.dart';
-import 'package:flutter_app_rdm/services/firebase_service.dart';
+import 'package:flutter_app_rdm/pages/pages.dart';
 import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/doctor_list_widget.dart';
 
@@ -47,7 +47,16 @@ class DoctorListPage extends StatelessWidget {
                       return DoctorListWidget(
                         title: users[index].name,
                         onDelete: () {},
-                        onEdit: () {},
+                        onEdit: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InfoDoctorPage(
+                                userModel: users[index],
+                              ),
+                            ),
+                          );
+                        },
                       );
                     }),
                   );

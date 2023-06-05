@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_rdm/models/user_model.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
 
 class InfoDoctorPage extends StatefulWidget {
-  const InfoDoctorPage({super.key});
+  UserModel? userModel;
+
+  InfoDoctorPage({this.userModel});
 
   @override
   State<InfoDoctorPage> createState() => _InfoDoctorPageState();
@@ -17,6 +20,18 @@ class _InfoDoctorPageState extends State<InfoDoctorPage> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.userModel != null) {
+      _nameController.text = widget.userModel!.name;
+      _copController.text = widget.userModel!.cop;
+      _phoneController.text = widget.userModel!.phone;
+      _emailController.text = widget.userModel!.email;
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
