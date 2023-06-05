@@ -99,7 +99,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             icon: "hash",
                             controller: _copController,
                             isNumeric: true,
-                            typeInput: TypeInputTextField.dni,
+                            typeInput: TypeInputTextField.cop,
                           ),
                           SizedBox(height: responsive.hp(2)),
                           TextFieldNormalWidget(

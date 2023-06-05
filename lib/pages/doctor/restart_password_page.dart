@@ -13,6 +13,7 @@ class RestartPasswordPage extends StatelessWidget {
     ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: priColor,
         title: const Text(
           "Recuperar contraseña",
           style: TextStyle(

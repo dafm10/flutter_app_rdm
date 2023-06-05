@@ -39,7 +39,9 @@ class TextFieldNormalWidget extends StatelessWidget {
         maxLength: isNumeric
             ? typeInput == TypeInputTextField.dni
                 ? 8
-                : 9
+                : typeInput == TypeInputTextField.cop
+                    ? 5
+                    : 9
             : null,
         keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
         inputFormatters: isNumeric

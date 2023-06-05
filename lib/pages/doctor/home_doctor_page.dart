@@ -80,7 +80,7 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
         Lottie.network(
           "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json",
           animate: false,
-          height: 210.0,
+          height: responsive.hp(25),
         ),
       ]),
     );

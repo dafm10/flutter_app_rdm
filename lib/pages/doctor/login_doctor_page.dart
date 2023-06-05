@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/doctor/pages.dart';
 import 'package:flutter_app_rdm/utils/utils.dart';
@@ -15,6 +16,21 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final CollectionReference _userReference =
+      FirebaseFirestore.instance.collection("users");
+
+  getData() {
+    _userReference.get().then((QuerySnapshot value) {
+      List<QueryDocumentSnapshot> docs = value.docs;
+      docs.forEach((QueryDocumentSnapshot element) {
+        // print(element.id);
+        print(element.data());
+        Map<String, dynamic> myMap = element.data() as Map<String, dynamic>;
+        // print(myMap["cop"]);
+      });
+    });
+  }
 
   login() {
     if (_formKey.currentState!.validate()) {}
@@ -77,7 +93,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                     horizontal: defaultPadding * 2,
                   ),
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -120,15 +136,15 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                           ElevatedButtonWidget(
                             title: "Iniciar Sesión",
                             onFunction: () {
-                              // login();
-                              if (_formKey.currentState!.validate()) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeDoctorPage(),
-                                  ),
-                                );
-                              }
+                              getData();
+                              // if (_formKey.currentState!.validate()) {
+                              //   Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => HomeDoctorPage(),
+                              //     ),
+                              //   );
+                              // }
                             },
                           ),
                           SizedBox(height: responsive.hp(3)),
@@ -169,7 +185,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                             child: Lottie.network(
                               "https://assets1.lottiefiles.com/packages/lf20_KvK0ZJBQzu.json",
                               animate: false,
-                              height: 280.0,
+                              height: responsive.hp(25),
                             ),
                           ),
                         ],

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "698155619200",
+    "project_id": "proyect-rdm",
+    "storage_bucket": "proyect-rdm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698155619200:android:9477df4ef9078d05afa765",
+        "android_client_info": {
+          "package_name": "com.lab.rdm.flutter_app_rdm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698155619200-00qc9hm407gi6mheupg77ge2fn7505k2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeQEyDaLz4KcFj4KgCcGiSzVaG4JxHsSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698155619200-00qc9hm407gi6mheupg77ge2fn7505k2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
