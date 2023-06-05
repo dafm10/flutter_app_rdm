@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/pages/doctor/pages.dart';
+import 'package:flutter_app_rdm/pages/pages.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';

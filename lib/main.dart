@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/pages/doctor/pages.dart';
+import 'package:flutter_app_rdm/pages/pages.dart';
 import 'package:flutter_app_rdm/utils/utils.dart';
 
 void main() async {
@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: scaffoldColor,
       ),
-      home: const LoginDoctorPage(),
+      // home: const LoginDoctorPage(),
+      home: DoctorListPage(),
     );
   }
 }

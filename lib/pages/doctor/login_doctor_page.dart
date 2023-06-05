@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_rdm/pages/doctor/pages.dart';
+import 'package:flutter_app_rdm/pages/pages.dart';
 import 'package:flutter_app_rdm/services/firebase_service.dart';
 import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
