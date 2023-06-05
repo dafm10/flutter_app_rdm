@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/doctor/pages.dart';
+import 'package:flutter_app_rdm/services/firebase_service.dart';
 import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
 import 'package:lottie/lottie.dart';
@@ -17,19 +18,18 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final CollectionReference _userReference =
-      FirebaseFirestore.instance.collection("users");
+  final FirebaseService _userService = FirebaseService(collection: 'users');
 
   getData() {
-    _userReference.get().then((QuerySnapshot value) {
-      List<QueryDocumentSnapshot> docs = value.docs;
-      docs.forEach((QueryDocumentSnapshot element) {
-        // print(element.id);
-        print(element.data());
-        Map<String, dynamic> myMap = element.data() as Map<String, dynamic>;
-        // print(myMap["cop"]);
-      });
-    });
+    // _userReference.get().then((QuerySnapshot value) {
+    //   List<QueryDocumentSnapshot> docs = value.docs;
+    //   docs.forEach((QueryDocumentSnapshot element) {
+    //     // print(element.id);
+    //     print(element.data());
+    //     Map<String, dynamic> myMap = element.data() as Map<String, dynamic>;
+    //     // print(myMap["cop"]);
+    //   });
+    // });
   }
 
   login() {
@@ -38,6 +38,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
 
   @override
   Widget build(BuildContext context) {
+    // _userService.getUserList();
     ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       body: Stack(
