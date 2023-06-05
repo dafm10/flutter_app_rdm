@@ -18,14 +18,16 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final FirebaseService _userService = FirebaseService(collection: 'users');
+  // final FirebaseService _userService = FirebaseService(collection: 'users');
+  final CollectionReference _userReference =
+      FirebaseFirestore.instance.collection("users");
 
   getData() {
     // _userReference.get().then((QuerySnapshot value) {
     //   List<QueryDocumentSnapshot> docs = value.docs;
     //   docs.forEach((QueryDocumentSnapshot element) {
     //     // print(element.id);
-    //     print(element.data());
+    //     // print(element.data());
     //     Map<String, dynamic> myMap = element.data() as Map<String, dynamic>;
     //     // print(myMap["cop"]);
     //   });
@@ -33,7 +35,14 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   }
 
   login() {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeDoctorPage(),
+        ),
+      );
+    }
   }
 
   @override
@@ -137,7 +146,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                           ElevatedButtonWidget(
                             title: "Iniciar Sesión",
                             onFunction: () {
-                              getData();
+                              login();
                               // if (_formKey.currentState!.validate()) {
                               //   Navigator.push(
                               //     context,
@@ -166,7 +175,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const RegisterDoctorPage(),
+                                          RegisterDoctorPage(),
                                     ),
                                   );
                                 },
@@ -183,8 +192,8 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
-                            child: Lottie.network(
-                              "https://assets1.lottiefiles.com/packages/lf20_KvK0ZJBQzu.json",
+                            child: Lottie.asset(
+                              "assets/lotties/login.json",
                               animate: false,
                               height: responsive.hp(25),
                             ),

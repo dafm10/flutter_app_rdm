@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_rdm/models/models.dart';
+import 'package:flutter_app_rdm/services/firebase_service.dart';
 import 'package:flutter_app_rdm/utils/utils.dart';
 import 'package:flutter_app_rdm/widget/widgets.dart';
 
 class RegisterDoctorPage extends StatefulWidget {
-  const RegisterDoctorPage({super.key});
+  UserModel? userModel;
+
+  RegisterDoctorPage({super.key, this.userModel});
 
   @override
   State<RegisterDoctorPage> createState() => _RegisterDoctorPageState();
@@ -11,11 +15,34 @@ class RegisterDoctorPage extends StatefulWidget {
 
 class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
   final _formKey = GlobalKey<FormState>();
+  final FirebaseService _userService = FirebaseService(collection: 'users');
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _copController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool status = true;
+
+  void register() {
+    if (_formKey.currentState!.validate()) {
+      UserModel userModel = UserModel(
+        role: "Doctor",
+        cop: _copController.text,
+        phone: _phoneController.text,
+        name: _nameController.text,
+        email: _emailController.text,
+        status: status,
+      );
+      if (widget.userModel == null) {
+        _userService.addUser(userModel).then((value) {
+          if (value.isNotEmpty) {
+            print("Usuario agregado");
+          }
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +146,10 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                             isNumeric: false,
                           ),
                           SizedBox(height: responsive.hp(2)),
-                          TextFieldPasswordWidget(
-                            validator: true,
-                            controller: _passwordController,
-                          ),
+                          // TextFieldPasswordWidget(
+                          //   validator: true,
+                          //   controller: _passwordController,
+                          // ),
                           SizedBox(height: responsive.hp(2)),
                           const Text(
                             "Todos los datos son obligatorios para su aprobación",
@@ -135,7 +162,7 @@ class _RegisterDoctorPageState extends State<RegisterDoctorPage> {
                           ElevatedButtonWidget(
                             title: "Registrar",
                             onFunction: () {
-                              if (_formKey.currentState!.validate()) {}
+                              register();
                             },
                           ),
                         ],

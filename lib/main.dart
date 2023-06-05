@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: scaffoldColor,
       ),
-      // home: const LoginDoctorPage(),
-      home: DoctorListPage(),
+      home: const LoginDoctorPage(),
+      // home: DoctorListPage(),
     );
   }
 }

@@ -77,10 +77,10 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
             color: purpleColor,
           ),
         ),
-        Lottie.network(
-          "https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json",
+        Lottie.asset(
+          "assets/lotties/profile.json",
           animate: false,
-          height: responsive.hp(25),
+          height: responsive.hp(20),
         ),
       ]),
     );

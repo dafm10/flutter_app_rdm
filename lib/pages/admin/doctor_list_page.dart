@@ -46,6 +46,7 @@ class DoctorListPage extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       return DoctorListWidget(
                         title: users[index].name,
+                        status: users[index].status,
                         onDelete: () {},
                         onEdit: () {
                           Navigator.push(
