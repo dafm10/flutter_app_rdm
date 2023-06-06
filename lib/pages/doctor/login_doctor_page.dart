@@ -174,8 +174,10 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegisterDoctorPage(),
+                                      builder: (context) => FormDoctorPage(
+                                        title: "Registro",
+                                        bottom: "Registrar",
+                                      ),
                                     ),
                                   );
                                 },

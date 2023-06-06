@@ -47,4 +47,17 @@ class FirebaseService {
       return Future.error("Error 3 $e");
     }
   }
+
+  Future<String> updateUser(UserModel userModel) async {
+    try {
+      await _collectionReference.doc(userModel.id).update(userModel.toJson());
+      return userModel.id!;
+    } on TimeoutException catch (e) {
+      return Future.error("Error 1 $e");
+    } on SocketException catch (e) {
+      return Future.error("Error 2 $e");
+    } on Error catch (e) {
+      return Future.error("Error 3 $e");
+    }
+  }
 }

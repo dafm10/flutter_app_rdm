@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_rdm/models/models.dart';
 import 'package:flutter_app_rdm/pages/pages.dart';
 import 'package:flutter_app_rdm/utils/constants.dart';
 import 'package:flutter_app_rdm/utils/responsive.dart';
@@ -6,7 +7,9 @@ import 'package:flutter_app_rdm/widget/widgets.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeDoctorPage extends StatefulWidget {
-  const HomeDoctorPage({super.key});
+  UserModel? userModel;
+
+  HomeDoctorPage({this.userModel});
 
   @override
   State<HomeDoctorPage> createState() => _HomeDoctorPageState();
@@ -49,7 +52,10 @@ class _HomeDoctorPageState extends State<HomeDoctorPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => InfoDoctorPage(),
+                builder: (context) => FormDoctorPage(
+                  bottom: "Guardar",
+                  title: "Mi Perfil",
+                ),
               ),
             );
           },

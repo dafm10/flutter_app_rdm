@@ -52,8 +52,10 @@ class DoctorListPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => InfoDoctorPage(
+                              builder: (context) => FormDoctorPage(
                                 userModel: users[index],
+                                title: "Mi Perfil",
+                                bottom: "Guardar",
                               ),
                             ),
                           );
