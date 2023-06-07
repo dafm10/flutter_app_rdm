@@ -30,9 +30,13 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
   final TextEditingController _copController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordActualController =
+      TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool status = true;
   bool isLoading = true;
+  bool validatorPassword = true;
+  String role = "Administrador";
 
   @override
   void initState() {
@@ -46,6 +50,7 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
       _copController.text = widget.userModel!.cop;
       _phoneController.text = widget.userModel!.phone;
       _emailController.text = widget.userModel!.email;
+      validatorPassword = false;
     }
     isLoading = false;
     setState(() {});
@@ -59,7 +64,6 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
         phone: _phoneController.text,
         name: _nameController.text,
         email: _emailController.text,
-        // password: _passwordController.text,
         status: status,
       );
       if (widget.userModel == null) {
@@ -72,22 +76,33 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
           if (userCredential.user != null) {
             _userService.addUser(userModel).then((value) {
               if (value.isNotEmpty) {
-                messageSuccessSnackBar(context, 3);
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeDoctorPage(
-                            userModel: userModel,
-                          )),
-                  (route) => false,
-                );
+                messageSuccessSnackBar(
+                    context, role == "Administrador" ? 4 : 3);
+                role == "Administrador"
+                    ? Navigator.pop(context)
+                    : Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeDoctorPage(
+                                  userModel: userModel,
+                                )),
+                        (route) => false,
+                      );
               }
             });
           }
         } on FirebaseAuthException catch (e) {
-          print(e);
+          isLoading = true;
+          errorSwitch(e.code, context);
         }
+        isLoading = false;
       } else {
+        // UserCredential userCredential =
+        //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+        //   email: _emailController.text,
+        //   password: _passwordActualController.text,
+        // );
+        // print(userCredential);
         userModel.id = widget.userModel!.id;
         _userService.updateUser(userModel).then((value) {
           messageSuccessSnackBar(context, 1);
@@ -200,14 +215,32 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
                                   isNumeric: false,
                                 ),
                                 SizedBox(height: responsive.hp(2)),
+                                widget.userModel != null
+                                    ? Column(
+                                        children: [
+                                          TextFieldPasswordWidget(
+                                            hinText: "Contraseña actual",
+                                            validator: validatorPassword,
+                                            controller:
+                                                _passwordActualController,
+                                          ),
+                                          SizedBox(height: responsive.hp(2)),
+                                        ],
+                                      )
+                                    : Container(),
                                 TextFieldPasswordWidget(
-                                  validator: true,
+                                  hinText: widget.userModel == null
+                                      ? "Contrasela"
+                                      : "Nueva Contraseña",
+                                  validator: validatorPassword,
                                   controller: _passwordController,
                                 ),
                                 SizedBox(height: responsive.hp(2)),
-                                const Text(
-                                  "Todos los datos son obligatorios para su aprobación",
-                                  style: TextStyle(
+                                Text(
+                                  widget.userModel == null
+                                      ? "Todos los datos son obligatorios para su aprobación"
+                                      : "Por seguridad no puede editar el número COP",
+                                  style: const TextStyle(
                                     color: grayColor,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -229,8 +262,11 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
                 ),
               ],
             )
-          : const Center(
-              child: CircularProgressIndicator(),
+          : Container(
+              color: const Color(0xff3A344C).withOpacity(0.5),
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
     );
   }

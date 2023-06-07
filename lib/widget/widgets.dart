@@ -9,3 +9,4 @@ export 'text_register_form_widget.dart';
 export 'expansion_tile_widget.dart';
 export 'text_subtitle_widget.dart';
 export 'general_widget.dart';
+export 'doctor_list_widget.dart';

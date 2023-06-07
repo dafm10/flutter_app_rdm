@@ -60,4 +60,17 @@ class FirebaseService {
       return Future.error("Error 3 $e");
     }
   }
+
+  deleteUser(String id) async {
+    try {
+      await _collectionReference.doc(id).delete();
+      return 1;
+    } on TimeoutException catch (e) {
+      return Future.error("Error 1 $e");
+    } on SocketException catch (e) {
+      return Future.error("Error 2 $e");
+    } on Error catch (e) {
+      return Future.error("Error 3 $e");
+    }
+  }
 }

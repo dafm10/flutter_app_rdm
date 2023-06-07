@@ -36,11 +36,12 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
 
   login() {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => HomeDoctorPage(),
         ),
+        (route) => false,
       );
     }
   }
@@ -79,7 +80,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
               Column(
                 children: [
                   const Text(
-                    "Login",
+                    "Iniciar Sesión",
                     style: TextStyle(
                       fontSize: 18.0,
                       color: priColor,
@@ -117,6 +118,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                           ),
                           SizedBox(height: responsive.hp(3)),
                           TextFieldPasswordWidget(
+                            hinText: "Contraseña",
                             validator: true,
                             controller: _passwordController,
                           ),
@@ -147,14 +149,6 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                             title: "Iniciar Sesión",
                             onFunction: () {
                               login();
-                              // if (_formKey.currentState!.validate()) {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => HomeDoctorPage(),
-                              //     ),
-                              //   );
-                              // }
                             },
                           ),
                           SizedBox(height: responsive.hp(3)),

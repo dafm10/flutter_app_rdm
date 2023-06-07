@@ -6,9 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 class TextFieldPasswordWidget extends StatefulWidget {
   TextEditingController? controller;
   bool validator;
+  String? hinText;
+
   TextFieldPasswordWidget({
     super.key,
     this.controller,
+    this.hinText,
     required this.validator,
   });
 
@@ -36,7 +39,7 @@ class _TextFieldPasswordWidgetState extends State<TextFieldPasswordWidget> {
         obscureText: isInvisible,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 14),
-          hintText: "Contraseña",
+          hintText: widget.hinText,
           filled: true,
           fillColor: Colors.white,
           hintStyle: const TextStyle(
