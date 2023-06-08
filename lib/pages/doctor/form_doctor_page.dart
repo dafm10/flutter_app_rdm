@@ -67,6 +67,8 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
         status: status,
       );
       if (widget.userModel == null) {
+        isLoading = true;
+        setState(() {});
         try {
           UserCredential userCredential =
               await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -76,6 +78,8 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
           if (userCredential.user != null) {
             _userService.addUser(userModel).then((value) {
               if (value.isNotEmpty) {
+                isLoading = false;
+                setState(() {});
                 messageSuccessSnackBar(
                     context, role == "Administrador" ? 4 : 3);
                 role == "Administrador"
@@ -93,9 +97,11 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
           }
         } on FirebaseAuthException catch (e) {
           isLoading = true;
+          setState(() {});
           errorSwitch(e.code, context);
         }
         isLoading = false;
+        setState(() {});
       } else {
         // UserCredential userCredential =
         //     await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -133,141 +139,141 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
           ),
         ),
       ),
-      body: !isLoading
-          ? Stack(
-              children: [
-                Column(
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                padding: EdgeInsets.zero,
+                child: Column(
                   children: [
+                    Center(
+                      child: Image.asset(
+                        "assets/images/logo_RDM.jpg",
+                        // width: 176.32,
+                        width: ResponsiveUI(context).wp(48),
+                      ),
+                    ),
+                    SizedBox(height: responsive.hp(4)),
+                    Text(
+                      widget.title,
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        color: priColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: responsive.hp(1)),
                     Container(
-                      padding: EdgeInsets.zero,
+                      width: 30.0,
+                      height: 1.0,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: responsive.hp(3)),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: defaultPadding,
+                    horizontal: defaultPadding * 2,
+                  ),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Form(
+                      key: _formKey,
                       child: Column(
                         children: [
-                          Center(
-                            child: Image.asset(
-                              "assets/images/logo_RDM.jpg",
-                              // width: 176.32,
-                              width: ResponsiveUI(context).wp(48),
-                            ),
+                          TextFieldNormalWidget(
+                            maxLines: 1,
+                            hintText: "Nombres y Apellidos",
+                            icon: "user",
+                            controller: _nameController,
+                            isNumeric: false,
                           ),
-                          SizedBox(height: responsive.hp(4)),
+                          SizedBox(height: responsive.hp(2)),
+                          TextFieldNormalWidget(
+                            maxLines: 1,
+                            hintText: "COP Nº",
+                            icon: "hash",
+                            controller: _copController,
+                            isNumeric: true,
+                            typeInput: TypeInputTextField.cop,
+                          ),
+                          SizedBox(height: responsive.hp(2)),
+                          TextFieldNormalWidget(
+                            maxLines: 1,
+                            hintText: "Teléfono",
+                            icon: "phone",
+                            controller: _phoneController,
+                            isNumeric: true,
+                            typeInput: TypeInputTextField.phone,
+                          ),
+                          SizedBox(height: responsive.hp(2)),
+                          TextFieldNormalWidget(
+                            maxLines: 1,
+                            hintText: "Correo electrónico",
+                            icon: "mail",
+                            controller: _emailController,
+                            isNumeric: false,
+                          ),
+                          SizedBox(height: responsive.hp(2)),
+                          widget.userModel != null
+                              ? Column(
+                                  children: [
+                                    TextFieldPasswordWidget(
+                                      hinText: "Contraseña actual",
+                                      validator: validatorPassword,
+                                      controller: _passwordActualController,
+                                    ),
+                                    SizedBox(height: responsive.hp(2)),
+                                  ],
+                                )
+                              : Container(),
+                          TextFieldPasswordWidget(
+                            hinText: widget.userModel == null
+                                ? "Contrasela"
+                                : "Nueva Contraseña",
+                            validator: validatorPassword,
+                            controller: _passwordController,
+                          ),
+                          SizedBox(height: responsive.hp(2)),
                           Text(
-                            widget.title,
+                            widget.userModel == null
+                                ? "Todos los datos son obligatorios para su aprobación"
+                                : "Por seguridad no puede editar el número COP",
                             style: const TextStyle(
-                              fontSize: 18.0,
-                              color: priColor,
-                              fontWeight: FontWeight.w700,
+                              color: grayColor,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: responsive.hp(1)),
-                          Container(
-                            width: 30.0,
-                            height: 1.0,
-                            color: Colors.black,
+                          SizedBox(height: responsive.hp(3)),
+                          ElevatedButtonWidget(
+                            title: widget.bottom,
+                            onFunction: () {
+                              register();
+                            },
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: responsive.hp(3)),
-                    Expanded(
-                      flex: 4,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: defaultPadding,
-                          horizontal: defaultPadding * 2,
-                        ),
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: Form(
-                            key: _formKey,
-                            child: Column(
-                              children: [
-                                TextFieldNormalWidget(
-                                  maxLines: 1,
-                                  hintText: "Nombres y Apellidos",
-                                  icon: "user",
-                                  controller: _nameController,
-                                  isNumeric: false,
-                                ),
-                                SizedBox(height: responsive.hp(2)),
-                                TextFieldNormalWidget(
-                                  maxLines: 1,
-                                  hintText: "COP Nº",
-                                  icon: "hash",
-                                  controller: _copController,
-                                  isNumeric: true,
-                                  typeInput: TypeInputTextField.cop,
-                                ),
-                                SizedBox(height: responsive.hp(2)),
-                                TextFieldNormalWidget(
-                                  maxLines: 1,
-                                  hintText: "Teléfono",
-                                  icon: "phone",
-                                  controller: _phoneController,
-                                  isNumeric: true,
-                                  typeInput: TypeInputTextField.phone,
-                                ),
-                                SizedBox(height: responsive.hp(2)),
-                                TextFieldNormalWidget(
-                                  maxLines: 1,
-                                  hintText: "Correo electrónico",
-                                  icon: "mail",
-                                  controller: _emailController,
-                                  isNumeric: false,
-                                ),
-                                SizedBox(height: responsive.hp(2)),
-                                widget.userModel != null
-                                    ? Column(
-                                        children: [
-                                          TextFieldPasswordWidget(
-                                            hinText: "Contraseña actual",
-                                            validator: validatorPassword,
-                                            controller:
-                                                _passwordActualController,
-                                          ),
-                                          SizedBox(height: responsive.hp(2)),
-                                        ],
-                                      )
-                                    : Container(),
-                                TextFieldPasswordWidget(
-                                  hinText: widget.userModel == null
-                                      ? "Contrasela"
-                                      : "Nueva Contraseña",
-                                  validator: validatorPassword,
-                                  controller: _passwordController,
-                                ),
-                                SizedBox(height: responsive.hp(2)),
-                                Text(
-                                  widget.userModel == null
-                                      ? "Todos los datos son obligatorios para su aprobación"
-                                      : "Por seguridad no puede editar el número COP",
-                                  style: const TextStyle(
-                                    color: grayColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: responsive.hp(3)),
-                                ElevatedButtonWidget(
-                                  title: widget.bottom,
-                                  onFunction: () {
-                                    register();
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ],
-            )
-          : Container(
-              color: const Color(0xff3A344C).withOpacity(0.5),
-              child: const Center(
-                child: CircularProgressIndicator(),
               ),
-            ),
+            ],
+          ),
+          isLoading
+              ? Container(
+                  color: const Color(0xff3A344C).withOpacity(0.5),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : Container(),
+        ],
+      ),
     );
   }
 }

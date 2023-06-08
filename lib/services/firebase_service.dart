@@ -73,4 +73,25 @@ class FirebaseService {
       return Future.error("Error 3 $e");
     }
   }
+
+  Future<UserModel?> getUser(String email) async {
+    try {
+      QuerySnapshot collection =
+          await _collectionReference.where('email', isEqualTo: email).get();
+      if (collection.docs.isNotEmpty) {
+        QueryDocumentSnapshot doc = collection.docs.first;
+        Map<String, dynamic> myMap = doc.data() as Map<String, dynamic>;
+        UserModel userModel = UserModel.fromJson(myMap);
+        userModel.id = doc.id;
+        return userModel;
+      }
+    } on TimeoutException catch (e) {
+      return Future.error("Error 1 $e");
+    } on SocketException catch (e) {
+      return Future.error("Error 2 $e");
+    } on Error catch (e) {
+      return Future.error("Error 3 $e");
+    }
+    return null;
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/pages.dart';
 import 'package:flutter_app_rdm/services/firebase_service.dart';
@@ -17,8 +18,9 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isLoading = false;
 
-  // final FirebaseService _userService = FirebaseService(collection: 'users');
+  final FirebaseService _userService = FirebaseService(collection: 'users');
   final CollectionReference _userReference =
       FirebaseFirestore.instance.collection("users");
 
@@ -34,21 +36,51 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
     // });
   }
 
-  login() {
+  login() async {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeDoctorPage(),
-        ),
-        (route) => false,
-      );
+      try {
+        isLoading = true;
+        setState(() {});
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        if (userCredential.user != null) {
+          String email = userCredential.user!.email!;
+          _userService.getUser(email).then((value) {
+            if (value != null) {
+              if (value.role == "Administrator") {
+                isLoading = false;
+                setState(() {});
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DoctorListPage(),
+                  ),
+                  (route) => false,
+                );
+              } else {
+                print("Eres vendedor");
+              }
+            }
+          });
+          // Navigator.pushAndRemoveUntil(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => HomeDoctorPage(),
+          //   ),
+          //   (route) => false,
+          // );
+        }
+      } on FirebaseAuthException catch (e) {
+        errorSwitch(e.code, context);
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // _userService.getUserList();
     ResponsiveUI responsive = ResponsiveUI(context);
     return Scaffold(
       body: Stack(
@@ -202,6 +234,14 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
               ),
             ],
           ),
+          isLoading
+              ? Container(
+                  color: grayColor.withOpacity(0.6),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );
