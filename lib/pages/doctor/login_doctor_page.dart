@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_rdm/pages/pages.dart';
@@ -19,10 +18,9 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
+  SPGlobal prefs = SPGlobal();
 
   final FirebaseService _userService = FirebaseService(collection: 'users');
-  final CollectionReference _userReference =
-      FirebaseFirestore.instance.collection("users");
 
   getData() {
     // _userReference.get().then((QuerySnapshot value) {
@@ -50,6 +48,11 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
           String email = userCredential.user!.email!;
           _userService.getUser(email).then((value) {
             if (value != null) {
+              prefs.isLogin = value.role;
+              prefs.userName = value.name.split(" ").first;
+              prefs.roleAdmin = value.role;
+              prefs.doctorId = value.id!;
+
               if (value.role == "Administrator") {
                 isLoading = false;
                 setState(() {});
@@ -61,21 +64,25 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                   (route) => false,
                 );
               } else {
-                print("Eres vendedor");
+                isLoading = false;
+                setState(() {});
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeDoctorPage(),
+                    ),
+                    (route) => false);
               }
             }
           });
-          // Navigator.pushAndRemoveUntil(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => HomeDoctorPage(),
-          //   ),
-          //   (route) => false,
-          // );
         }
       } on FirebaseAuthException catch (e) {
         errorSwitch(e.code, context);
+        isLoading = false;
+        setState(() {});
       }
+      isLoading = false;
+      setState(() {});
     }
   }
 
@@ -224,6 +231,7 @@ class _LoginDoctorPageState extends State<LoginDoctorPage> {
                               "assets/lotties/login.json",
                               animate: false,
                               height: responsive.hp(25),
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ],

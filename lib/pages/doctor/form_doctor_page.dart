@@ -36,7 +36,7 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
   bool status = true;
   bool isLoading = true;
   bool validatorPassword = true;
-  String role = "Administrador";
+  SPGlobal prefs = SPGlobal();
 
   @override
   void initState() {
@@ -78,11 +78,14 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
           if (userCredential.user != null) {
             _userService.addUser(userModel).then((value) {
               if (value.isNotEmpty) {
+                // prefs.isLogin = userModel.role;
+                // prefs.userName = userModel.name.split(" ").first;
+                // prefs.doctorId = userModel.id!;
                 isLoading = false;
                 setState(() {});
                 messageSuccessSnackBar(
-                    context, role == "Administrador" ? 4 : 3);
-                role == "Administrador"
+                    context, prefs.isLogin == "Administrator" ? 4 : 3);
+                prefs.isLogin == "Administrator"
                     ? Navigator.pop(context)
                     : Navigator.pushAndRemoveUntil(
                         context,
@@ -266,7 +269,7 @@ class _FormDoctorPageState extends State<FormDoctorPage> {
           ),
           isLoading
               ? Container(
-                  color: const Color(0xff3A344C).withOpacity(0.5),
+                  color: const Color(0xff3A344C).withOpacity(0.3),
                   child: const Center(
                     child: CircularProgressIndicator(),
                   ),

@@ -1,8 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SPGlobal {
-  SPGlobal._();
   static final SPGlobal _instance = SPGlobal._();
+
+  SPGlobal._();
+
   factory SPGlobal() {
     return _instance;
   }
@@ -35,5 +37,13 @@ class SPGlobal {
 
   String get doctorId {
     return _prefs.getString('doctorId') ?? "";
+  }
+
+  set roleAdmin(String value) {
+    _prefs.setString('roleAdmin', value);
+  }
+
+  String get roleAdmin {
+    return _prefs.getString('roleAdmin') ?? "";
   }
 }
