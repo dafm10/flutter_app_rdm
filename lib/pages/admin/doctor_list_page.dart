@@ -38,9 +38,9 @@ class _DoctorListPageState extends State<DoctorListPage> {
     _userService.getUserList().then((value) {
       if (value.length == 1) {
         isAdmin = true;
-        print(value.length);
+        // print(value.length);
       }
-      print(value.length);
+      // print(value.length);
     });
   }
 
@@ -143,34 +143,59 @@ class _DoctorListPageState extends State<DoctorListPage> {
                         user.id = e.id;
                         return user;
                       }).toList();
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: users.length,
-                        itemBuilder: ((context, index) {
-                          count = users.length;
-                          return DoctorListWidget(
-                            title: users[index].name,
-                            status: users[index].status,
-                            onDelete: () {
-                              deleteUser(users[index].id.toString());
-                              deleteEmail();
-                              setState(() {});
-                            },
-                            onEdit: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FormDoctorPage(
-                                    userModel: users[index],
-                                    title: "Mi Perfil",
-                                    bottom: "Guardar",
-                                  ),
+                      return users.isEmpty
+                          ? Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).size.height / 4,
+                              ),
+                              child: Center(
+                                child: Column(
+                                  children: [
+                                    Lottie.asset(
+                                      "assets/lotties/empty.json",
+                                      height: responsive.hp(35),
+                                      animate: false,
+                                    ),
+                                    const Text(
+                                      "No se encontraron datos",
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: priColor,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            },
-                          );
-                        }),
-                      );
+                              ),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: users.length,
+                              itemBuilder: ((context, index) {
+                                return DoctorListWidget(
+                                  title: users[index].name,
+                                  status: users[index].status,
+                                  onDelete: () {
+                                    deleteUser(users[index].id.toString());
+                                    deleteEmail();
+                                    setState(() {});
+                                  },
+                                  onEdit: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => FormDoctorPage(
+                                          userModel: users[index],
+                                          title: "Mi Perfil",
+                                          bottom: "Guardar",
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }),
+                            );
                     }
                     return const Center(child: CircularProgressIndicator());
                   },
